@@ -12,6 +12,7 @@ export default function Home() {
       <div className="flex-1 flex flex-col">
         <Tabs defaultValue="generate" className="flex-1 flex flex-col">
           <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg shadow-primary/10 flex-1 flex flex-col rounded-none border-none">
+          {/*for transparent background change above , with below line*/}
           {/*<Card className="flex-1 flex flex-col rounded-none border-0 bg-transparent">*/}
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="font-headline text-lg flex items-center gap-2">
