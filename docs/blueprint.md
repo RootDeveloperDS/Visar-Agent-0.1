@@ -1,9 +1,9 @@
-# **App Name**: VISAR Agent 001
+# **App Name**: VISAR Agent 0.1
 
 ## Core Features:
 
-- DeepSeek Integration: Generate code snippets and answer coding-related questions using the DeepSeek API. The DeepSeek model will act as a tool and decide whether and when to incorporate existing code.
-- API Key Handling: Allow users to pass their DeepSeek API key via URL parameter for personalized usage.
+- GEMINI Integration: Generate code snippets and answer coding-related questions using the GEMINI API. The GEMINI model will act as a tool and decide whether and when to incorporate existing code.
+- API Key Handling: Allow users to pass their GEMINI API key via URL parameter for personalized usage.
 - VISAR-Themed UI: Implement a dark UI theme with futuristic colors and neon gradients, optimized for embedding in a smaller viewport (e.g., 238x238 or larger).
 - Vercel Deployment: Deploy both frontend and backend components as a single Vercel application.
 - Copy to Clipboard: Provide a simple way for users to copy the generated code snippet.

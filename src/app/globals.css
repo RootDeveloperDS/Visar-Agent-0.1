@@ -77,7 +77,7 @@
   }
 
   .gradient-border-container {
-    @apply relative p-[1px] rounded-md;
+    @apply relative p-[2px] rounded-md;
   }
   .gradient-border-container > * {
     @apply relative z-10;
@@ -88,8 +88,8 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    padding: 1px; /* border thickness */
-    background: linear-gradient(to right, #521607, #260C45, #072A38);
+    padding: 2px; /* border thickness */
+    background: linear-gradient(to right, #90270c, #421579, #1ea8de);
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
