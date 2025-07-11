@@ -58,11 +58,13 @@ export function GeneratePanel() {
             name="prompt"
             render={({ field }) => (
               <FormItem>
-                <Textarea
-                  placeholder="Describe the code you want to generate..."
-                  className="min-h-[100px] text-sm"
-                  {...field}
-                />
+                <div className="gradient-border-container bg-background rounded-md">
+                  <Textarea
+                    placeholder="Describe the code you want to generate..."
+                    className="min-h-[100px] text-sm border-none"
+                    {...field}
+                  />
+                </div>
                 <FormMessage />
               </FormItem>
             )}

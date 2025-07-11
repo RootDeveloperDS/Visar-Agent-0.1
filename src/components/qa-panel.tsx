@@ -57,11 +57,13 @@ export function QAPanel() {
             name="question"
             render={({ field }) => (
               <FormItem>
-                <Textarea
-                  placeholder="Ask a coding question..."
-                  className="min-h-[80px] text-sm"
-                  {...field}
-                />
+                <div className="gradient-border-container bg-background rounded-md">
+                  <Textarea
+                    placeholder="Ask a coding question..."
+                    className="min-h-[80px] text-sm border-none"
+                    {...field}
+                  />
+                </div>
                 <FormMessage />
               </FormItem>
             )}
@@ -71,11 +73,13 @@ export function QAPanel() {
             name="existingCode"
             render={({ field }) => (
               <FormItem>
-                <Textarea
-                  placeholder="Provide existing code (optional context)..."
-                  className="min-h-[80px] text-sm font-code"
-                  {...field}
-                />
+                <div className="gradient-border-container bg-background rounded-md">
+                  <Textarea
+                    placeholder="Provide existing code (optional context)..."
+                    className="min-h-[80px] text-sm font-code border-none"
+                    {...field}
+                  />
+                </div>
                 <FormMessage />
               </FormItem>
             )}

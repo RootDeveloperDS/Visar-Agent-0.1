@@ -61,11 +61,13 @@ export function TranslatePanel() {
             name="codeSnippet"
             render={({ field }) => (
               <FormItem>
-                <Textarea
-                  placeholder="Enter code to translate..."
-                  className="min-h-[100px] text-sm font-code"
-                  {...field}
-                />
+                <div className="gradient-border-container bg-background rounded-md">
+                  <Textarea
+                    placeholder="Enter code to translate..."
+                    className="min-h-[100px] text-sm font-code border-none"
+                    {...field}
+                  />
+                </div>
                 <FormMessage />
               </FormItem>
             )}
