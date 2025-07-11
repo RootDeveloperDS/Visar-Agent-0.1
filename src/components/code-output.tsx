@@ -67,13 +67,13 @@ export function CodeOutput({ code, isLoading, className, language }: CodeOutputP
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
-      <ScrollArea className="h-64">
+      <ScrollArea className="h-full">
         {isLoading ? (
           <div className="flex items-center justify-center h-full">
             <LoaderCircle className="h-8 w-8 animate-spin text-primary" />
           </div>
         ) : (
-          <pre className="p-4 overflow-auto">
+          <pre className="p-4 overflow-auto h-full">
             <code className={`font-code text-sm ${language ? `language-${language}` : ''}`}>
               {code || "AI output will appear here..."}
             </code>

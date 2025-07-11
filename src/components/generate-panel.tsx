@@ -50,18 +50,18 @@ export function GeneratePanel() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 flex flex-col flex-1">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 flex flex-col flex-1">
           <FormField
             control={form.control}
             name="prompt"
             render={({ field }) => (
-              <FormItem>
-                <div className="gradient-border-container bg-background rounded-md">
+              <FormItem className="flex-1 flex flex-col">
+                <div className="gradient-border-container bg-background rounded-md flex-1 flex">
                   <Textarea
                     placeholder="Describe the code you want to generate..."
-                    className="min-h-[100px] text-sm border-none"
+                    className="min-h-[100px] text-sm border-none flex-1"
                     {...field}
                   />
                 </div>
@@ -99,7 +99,7 @@ export function GeneratePanel() {
           </div>
         </form>
       </Form>
-      <CodeOutput code={output} isLoading={isLoading} language={form.watch('language')} />
+      <CodeOutput code={output} isLoading={isLoading} language={form.watch('language')} className="flex-1 flex flex-col" />
     </div>
   );
 }

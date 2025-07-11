@@ -49,9 +49,9 @@ export function QAPanel() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 flex flex-col flex-1">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 flex flex-col">
           <FormField
             control={form.control}
             name="question"
@@ -89,8 +89,8 @@ export function QAPanel() {
           </Button>
         </form>
       </Form>
-      <div className="relative mt-4 rounded-md border border-accent/20 bg-background/50">
-        <ScrollArea className="h-64">
+      <div className="relative mt-4 rounded-md border border-accent/20 bg-background/50 flex-1 flex flex-col">
+        <ScrollArea className="flex-1">
            {isLoading ? (
             <div className="flex items-center justify-center h-full">
               <LoaderCircle className="h-8 w-8 animate-spin text-primary" />

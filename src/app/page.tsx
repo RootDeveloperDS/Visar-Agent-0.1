@@ -9,10 +9,10 @@ import { QAPanel } from "@/components/qa-panel"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-br from-[#521607] via-[#260C45] to-[#072A38] font-body">
-      <div className="w-full max-w-md mx-auto">
-        <Tabs defaultValue="generate" className="w-full">
-          <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg shadow-primary/10">
+    <main className="flex min-h-screen flex-col font-body">
+      <div className="w-full h-full flex-1 p-4 flex flex-col">
+        <Tabs defaultValue="generate" className="w-full h-full flex flex-col">
+          <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg shadow-primary/10 flex-1 flex flex-col">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="font-headline text-lg flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
@@ -26,14 +26,14 @@ export default function Home() {
                 <TabsTrigger value="qa" className="h-full rounded-r-md rounded-l-none text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Q&amp;A</TabsTrigger>
               </TabsList>
             </CardHeader>
-            <CardContent className="pt-4">
-              <TabsContent value="generate" className="mt-0">
+            <CardContent className="pt-4 flex-1 flex flex-col">
+              <TabsContent value="generate" className="mt-0 flex-1 flex flex-col">
                 <GeneratePanel />
               </TabsContent>
-              <TabsContent value="translate" className="mt-0">
+              <TabsContent value="translate" className="mt-0 flex-1 flex flex-col">
                 <TranslatePanel />
               </TabsContent>
-              <TabsContent value="qa" className="mt-0">
+              <TabsContent value="qa" className="mt-0 flex-1 flex flex-col">
                 <QAPanel />
               </TabsContent>
             </CardContent>
