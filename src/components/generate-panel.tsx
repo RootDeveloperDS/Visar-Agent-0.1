@@ -18,7 +18,7 @@ const formSchema = z.object({
   language: z.string({ required_error: "Please select a language." }),
 });
 
-export function GeneratePanel() {
+export function GeneratePanel({ apiKey }: { apiKey?: string }) {
   const [output, setOutput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
@@ -35,7 +35,7 @@ export function GeneratePanel() {
     setIsLoading(true);
     setOutput("");
     try {
-      const result = await generateCodeSnippet(values);
+      const result = await generateCodeSnippet({ ...values, apiKey });
       setOutput(result.code);
     } catch (error) {
       console.error("Error generating code snippet:", error);

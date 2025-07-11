@@ -10,10 +10,12 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import {googleAI} from '@genkit-ai/googleai';
 
 const AnswerCodingQuestionInputSchema = z.object({
   question: z.string().describe('The coding-related question to be answered.'),
   existingCode: z.string().optional().describe('Existing code to be incorporated into the answer.'),
+  apiKey: z.string().optional().describe('Optional user-provided API key.'),
 });
 export type AnswerCodingQuestionInput = z.infer<typeof AnswerCodingQuestionInputSchema>;
 
@@ -28,7 +30,10 @@ export async function answerCodingQuestion(input: AnswerCodingQuestionInput): Pr
 
 const answerCodingQuestionPrompt = ai.definePrompt({
   name: 'answerCodingQuestionPrompt',
-  input: {schema: AnswerCodingQuestionInputSchema},
+  input: {schema: z.object({
+    question: AnswerCodingQuestionInputSchema.shape.question,
+    existingCode: AnswerCodingQuestionInputSchema.shape.existingCode,
+  })},
   output: {schema: AnswerCodingQuestionOutputSchema},
   prompt: `You are a coding assistant. Answer the following question:
 
@@ -46,8 +51,16 @@ const answerCodingQuestionFlow = ai.defineFlow(
     inputSchema: AnswerCodingQuestionInputSchema,
     outputSchema: AnswerCodingQuestionOutputSchema,
   },
-  async input => {
-    const {output} = await answerCodingQuestionPrompt(input);
+  async ({apiKey, ...promptInput}) => {
+    let model = ai.model('googleai/gemini-2.0-flash');
+    if (apiKey) {
+      const customGoogleAI = googleAI({apiKey});
+      model = customGoogleAI.model('gemini-2.0-flash');
+    }
+    const {output} = await ai.run(
+      'answer-coding-question-prompt-execution',
+      () => answerCodingQuestionPrompt(promptInput, {model})
+    );
     return output!;
   }
 );

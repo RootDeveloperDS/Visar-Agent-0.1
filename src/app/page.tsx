@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -7,13 +8,21 @@ import { GeneratePanel } from "@/components/generate-panel"
 import { QAPanel } from "@/components/qa-panel"
 
 export default function Home() {
+  const [apiKey, setApiKey] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userApiKey = urlParams.get("apikey");
+    if (userApiKey) {
+      setApiKey(userApiKey);
+    }
+  }, []);
+
   return (
-    <main className="h-screen w-screen flex flex-col font-body"style={{ backgroundImage: 'linear-gradient(to top, #501608, #32115b, rgba(12, 71, 94, 0.9), rgba(57, 255, 20, 0.3))' }}>
+    <main className="h-screen w-screen flex flex-col font-body" style={{ backgroundImage: 'linear-gradient(to top, #501608, #32115b, rgba(12, 71, 94, 0.9), rgba(57, 255, 20, 0.3))' }}>
       <div className="flex-1 flex flex-col">
         <Tabs defaultValue="generate" className="flex-1 flex flex-col">
-          <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg shadow-primary/10 flex-1 flex flex-col rounded-none border-none">
-          {/*for transparent background change above , with below line*/}
-          {/*<Card className="flex-1 flex flex-col rounded-none border-0 bg-transparent">*/}
+          <Card className="flex-1 flex flex-col rounded-none border-0 bg-transparent">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="font-headline text-lg flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-primary/0 flex items-center justify-center">
@@ -28,10 +37,10 @@ export default function Home() {
             </CardHeader>
             <CardContent className="pt-4 flex-1 flex flex-col">
               <TabsContent value="generate" className="mt-0 flex-1 flex flex-col">
-                <GeneratePanel />
+                <GeneratePanel apiKey={apiKey} />
               </TabsContent>
               <TabsContent value="qa" className="mt-0 flex-1 flex flex-col">
-                <QAPanel />
+                <QAPanel apiKey={apiKey} />
               </TabsContent>
             </CardContent>
           </Card>
