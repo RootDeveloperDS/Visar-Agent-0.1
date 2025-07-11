@@ -9,7 +9,7 @@ import { QAPanel } from "@/components/qa-panel"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-background font-body">
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-br from-[#521607] via-[#260C45] to-[#072A38] font-body">
       <div className="w-full max-w-md mx-auto">
         <Tabs defaultValue="generate" className="w-full">
           <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg shadow-primary/10">
