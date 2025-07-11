@@ -9,10 +9,10 @@ import { QAPanel } from "@/components/qa-panel"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col font-body">
-      <div className="w-full h-full flex-1 p-4 flex flex-col">
-        <Tabs defaultValue="generate" className="w-full h-full flex flex-col">
-          <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg shadow-primary/10 flex-1 flex flex-col">
+    <main className="h-screen w-screen flex flex-col font-body">
+      <div className="flex-1 flex flex-col">
+        <Tabs defaultValue="generate" className="flex-1 flex flex-col">
+          <Card className="flex-1 flex flex-col rounded-none border-0">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="font-headline text-lg flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
