@@ -79,6 +79,9 @@
   .gradient-border-container {
     @apply relative p-[1px] rounded-md;
   }
+  .gradient-border-container > * {
+    @apply relative z-10;
+  }
 
   .gradient-border-container::before {
     content: '';
