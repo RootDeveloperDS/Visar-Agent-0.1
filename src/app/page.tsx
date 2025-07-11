@@ -1,6 +1,6 @@
 "use client"
 
-import { Bot } from "lucide-react"
+import Image from "next/image"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { GeneratePanel } from "@/components/generate-panel"
@@ -9,14 +9,14 @@ import { QAPanel } from "@/components/qa-panel"
 
 export default function Home() {
   return (
-    <main className="h-screen w-screen flex flex-col font-body">
+    <main className="h-screen w-screen flex flex-col font-body bg-[#072A38]">
       <div className="flex-1 flex flex-col">
         <Tabs defaultValue="generate" className="flex-1 flex flex-col">
-          <Card className="flex-1 flex flex-col rounded-none border-0">
+          <Card className="flex-1 flex flex-col rounded-none border-0 bg-transparent">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="font-headline text-lg flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Bot className="w-5 h-5 text-primary" style={{ filter: 'drop-shadow(0 0 3px hsl(var(--primary)))' }} />
+                  <Image src="/logo.png" alt="VISAR Agent Logo" width={20} height={20} style={{ filter: 'drop-shadow(0 0 3px hsl(var(--primary)))' }} data-ai-hint="robot head" />
                 </div>
                 VISAR Agent 0.1
               </CardTitle>
