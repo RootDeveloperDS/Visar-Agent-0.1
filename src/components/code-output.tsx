@@ -32,6 +32,7 @@ export function CodeOutput({ code, isLoading, className, language }: CodeOutputP
       toast({
         title: "Copied!",
         description: "The code has been copied to your clipboard.",
+        duration: 2000,
       });
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -40,6 +41,7 @@ export function CodeOutput({ code, isLoading, className, language }: CodeOutputP
         variant: "destructive",
         title: "Copy Failed",
         description: "Could not copy text to clipboard.",
+        duration: 2000,
       });
     }
   };
@@ -47,7 +49,7 @@ export function CodeOutput({ code, isLoading, className, language }: CodeOutputP
   return (
     <div className={cn("relative mt-4 rounded-md border border-accent/20 bg-background/50", className)}>
       <TooltipProvider>
-        <Tooltip open={copied}>
+        <Tooltip>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"
@@ -61,7 +63,7 @@ export function CodeOutput({ code, isLoading, className, language }: CodeOutputP
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Copied!</p>
+            <p>{copied ? "Copied!" : "Copy to clipboard"}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
