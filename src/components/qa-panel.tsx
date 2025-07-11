@@ -49,9 +49,9 @@ export function QAPanel() {
   }
 
   return (
-    <div className="space-y-4 flex flex-col flex-1">
+    <div className="flex flex-col flex-1 h-full">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 flex flex-col">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
             control={form.control}
             name="question"
