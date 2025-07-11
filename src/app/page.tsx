@@ -18,7 +18,7 @@ export default function Home() {
                 <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
                   <Bot className="w-5 h-5 text-primary" style={{ filter: 'drop-shadow(0 0 3px hsl(var(--primary)))' }} />
                 </div>
-                VISAR Agent 001
+                VISAR Agent 0.1
               </CardTitle>
               <TabsList className="grid grid-cols-3 w-auto h-8 p-0 bg-card">
                 <TabsTrigger value="generate" className="h-full rounded-l-md rounded-r-none text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Generate</TabsTrigger>
