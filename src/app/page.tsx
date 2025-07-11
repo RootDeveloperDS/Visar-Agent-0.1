@@ -9,14 +9,14 @@ import { QAPanel } from "@/components/qa-panel"
 
 export default function Home() {
   return (
-    <main className="h-screen w-screen flex flex-col font-body bg-[#072A38]">
+    <main className="h-screen w-screen flex flex-col font-body"style={{ backgroundImage: 'linear-gradient(to top, #501608, #32115b, rgba(12, 71, 94, 0.9), rgba(57, 255, 20, 0.3))' }}>
       <div className="flex-1 flex flex-col">
         <Tabs defaultValue="generate" className="flex-1 flex flex-col">
           <Card className="flex-1 flex flex-col rounded-none border-0 bg-transparent">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="font-headline text-lg flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Image src="/logo.png" alt="VISAR Agent Logo" width={20} height={20} style={{ filter: 'drop-shadow(0 0 3px hsl(var(--primary)))' }} data-ai-hint="robot head" />
+                <div className="w-10 h-10 rounded-full bg-primary/0 flex items-center justify-center">
+                  <Image src="/icon.png" alt="VISAR Agent Logo" width={35} height={35} style={{ filter: 'drop-shadow(0 0 3px hsl(var(--primary)))' }} data-ai-hint="robot head" />
                 </div>
                 VISAR Agent 0.1
               </CardTitle>
