@@ -5,6 +5,7 @@ import { Check, Clipboard, LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 interface CodeOutputProps {
   code: string;
@@ -15,12 +16,22 @@ interface CodeOutputProps {
 
 export function CodeOutput({ code, isLoading, className, language }: CodeOutputProps) {
   const [copied, setCopied] = useState(false);
+  const { toast } = useToast();
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     if (!code) return;
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+      toast({
+        variant: "destructive",
+        title: "Copy Failed",
+        description: "Could not copy text to clipboard.",
+      });
+    }
   };
 
   return (
