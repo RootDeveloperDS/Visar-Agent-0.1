@@ -4,15 +4,14 @@ import Image from "next/image"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { GeneratePanel } from "@/components/generate-panel"
-import { TranslatePanel } from "@/components/translate-panel"
 import { QAPanel } from "@/components/qa-panel"
 
 export default function Home() {
   return (
-    <main className="h-screen w-screen flex flex-col font-body"style={{ backgroundImage: 'linear-gradient(to top, #501608, #32115b, rgba(12, 71, 94, 0.9), rgba(57, 255, 20, 0.3))' }}>
-      <div className="flex-1 flex flex-col">
+    <main className="h-screen w-screen flex flex-col font-body bg-background">
+      <div className="flex-1 flex flex-col p-4 max-w-4xl mx-auto w-full">
         <Tabs defaultValue="generate" className="flex-1 flex flex-col">
-          <Card className="flex-1 flex flex-col rounded-none border-0 bg-transparent">
+          <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg shadow-primary/10 flex-1 flex flex-col">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="font-headline text-lg flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-primary/0 flex items-center justify-center">
@@ -20,18 +19,14 @@ export default function Home() {
                 </div>
                 VISAR Agent 0.1
               </CardTitle>
-              <TabsList className="grid grid-cols-3 w-auto h-8 p-0 bg-card">
+              <TabsList className="grid grid-cols-2 w-auto h-8 p-0 bg-card">
                 <TabsTrigger value="generate" className="h-full rounded-l-md rounded-r-none text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Generate</TabsTrigger>
-                <TabsTrigger value="translate" className="h-full rounded-none border-x border-primary/50 text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Translate</TabsTrigger>
                 <TabsTrigger value="qa" className="h-full rounded-r-md rounded-l-none text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Q&amp;A</TabsTrigger>
               </TabsList>
             </CardHeader>
             <CardContent className="pt-4 flex-1 flex flex-col">
               <TabsContent value="generate" className="mt-0 flex-1 flex flex-col">
                 <GeneratePanel />
-              </TabsContent>
-              <TabsContent value="translate" className="mt-0 flex-1 flex flex-col">
-                <TranslatePanel />
               </TabsContent>
               <TabsContent value="qa" className="mt-0 flex-1 flex flex-col">
                 <QAPanel />
