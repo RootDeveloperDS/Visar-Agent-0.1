@@ -60,11 +60,11 @@ const generateCodeSnippetFlow = ai.defineFlow(
   },
   async (input) => {
     const { apiKey, ...promptData } = input;
-
+    
     const {output} = await generateCodeSnippetPrompt(promptData, {
       model: apiKey ? googleAI({apiKey}).model('gemini-1.5-flash-latest') : undefined,
     });
-
+    
     return output!;
   }
 );
