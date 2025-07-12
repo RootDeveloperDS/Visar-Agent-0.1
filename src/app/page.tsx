@@ -27,7 +27,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="h-screen w-screen flex flex-col font-body">
+    <main className="h-screen w-screen flex flex-col font-body" style={{ backgroundImage: 'linear-gradient(to top, #501608, #32115b, rgba(12, 71, 94, 0.9), rgba(57, 255, 20, 0.3))' }}>
       <div className="flex-1 flex flex-col">
         <Tabs defaultValue="generate" className="flex-1 flex flex-col">
           <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg shadow-primary/10 flex-1 flex flex-col rounded-none border-none">

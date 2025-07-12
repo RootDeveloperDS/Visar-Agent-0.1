@@ -50,16 +50,10 @@ const answerCodingQuestionFlow = ai.defineFlow(
   },
   async (input) => {
     const { apiKey, ...promptData } = input;
-    let model = ai.model('googleai/gemini-2.0-flash');
-
-    if (apiKey) {
-      const customGoogleAI = googleAI({ apiKey });
-      model = customGoogleAI.model('gemini-2.0-flash');
-    }
     
     const {output} = await ai.generate({
-      model: model,
-      prompt: answerCodingQuestionPrompt.compile({input: promptData}),
+      model: apiKey ? googleAI({apiKey}).model('gemini-2.0-flash') : 'googleai/gemini-2.0-flash',
+      prompt: await answerCodingQuestionPrompt.render({input: promptData}),
       output: {
         schema: AnswerCodingQuestionOutputSchema,
       },
