@@ -61,12 +61,8 @@ const generateCodeSnippetFlow = ai.defineFlow(
   async (input) => {
     const { apiKey, ...promptData } = input;
 
-    const {output} = await ai.generate({
-      model: apiKey ? googleAI({apiKey}).model('gemini-1.5-flash-latest') : 'googleai/gemini-1.5-flash-latest',
-      prompt: await generateCodeSnippetPrompt.render({input: promptData}),
-      output: {
-        schema: GenerateCodeSnippetOutputSchema,
-      },
+    const {output} = await generateCodeSnippetPrompt(promptData, {
+      model: apiKey ? googleAI({apiKey}).model('gemini-1.5-flash-latest') : undefined,
     });
 
     return output!;
