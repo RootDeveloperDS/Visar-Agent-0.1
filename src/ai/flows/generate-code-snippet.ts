@@ -64,10 +64,15 @@ const generateCodeSnippetFlow = ai.defineFlow(
   },
   async ({apiKey, ...promptInput}) => {
     let model = ai.model('googleai/gemini-2.0-flash');
+    
+    // If user provides a custom API key, use it instead of the default
     if (apiKey) {
-      const customGoogleAI = googleAI({apiKey});
+      const customGoogleAI = googleAI({
+        apiKey: apiKey,
+      });
       model = customGoogleAI.model('gemini-2.0-flash');
     }
+    
     const {output} = await ai.run(
       'generate-code-snippet-prompt-execution',
       () => generateCodeSnippetPrompt(promptInput, {model})
