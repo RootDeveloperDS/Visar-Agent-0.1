@@ -17,7 +17,11 @@ const formSchema = z.object({
   existingCode: z.string().optional(),
 });
 
-export function QAPanel() {
+interface QAPanelProps {
+  apiKey: string | null;
+}
+
+export function QAPanel({ apiKey }: QAPanelProps) {
   const [output, setOutput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const { toast } = useToast()
@@ -34,7 +38,7 @@ export function QAPanel() {
     setIsLoading(true);
     setOutput("");
     try {
-      const result = await answerCodingQuestion(values);
+      const result = await answerCodingQuestion({ ...values, apiKey });
       setOutput(result.answer);
     } catch (error) {
       console.error("Error getting answer:", error);

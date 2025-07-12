@@ -10,11 +10,13 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import {googleAI} from '@genkit-ai/googleai';
 
 const GenerateCodeSnippetInputSchema = z.object({
   prompt: z.string().describe('A description of the desired code snippet.'),
   language: z.string().describe('The programming language for the code snippet.'),
   existingCode: z.string().optional().describe('Existing code to incorporate into the generated snippet.'),
+  apiKey: z.string().nullable().optional().describe('Optional API key for Google AI.'),
 });
 
 export type GenerateCodeSnippetInput = z.infer<typeof GenerateCodeSnippetInputSchema>;
@@ -56,8 +58,23 @@ const generateCodeSnippetFlow = ai.defineFlow(
     inputSchema: GenerateCodeSnippetInputSchema,
     outputSchema: GenerateCodeSnippetOutputSchema,
   },
-  async input => {
-    const {output} = await generateCodeSnippetPrompt(input);
+  async (input) => {
+    const { apiKey, ...promptData } = input;
+    let model = ai.model('googleai/gemini-2.0-flash');
+    
+    if (apiKey) {
+      const customGoogleAI = googleAI({ apiKey });
+      model = customGoogleAI.model('gemini-2.0-flash');
+    }
+
+    const {output} = await ai.generate({
+      model: model,
+      prompt: generateCodeSnippetPrompt.compile({input: promptData}),
+      output: {
+        schema: GenerateCodeSnippetOutputSchema,
+      },
+    });
+
     return output!;
   }
 );

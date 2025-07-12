@@ -10,10 +10,12 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import {googleAI} from '@genkit-ai/googleai';
 
 const AnswerCodingQuestionInputSchema = z.object({
   question: z.string().describe('The coding-related question to be answered.'),
   existingCode: z.string().optional().describe('Existing code to be incorporated into the answer.'),
+  apiKey: z.string().nullable().optional().describe('Optional API key for Google AI.'),
 });
 export type AnswerCodingQuestionInput = z.infer<typeof AnswerCodingQuestionInputSchema>;
 
@@ -46,8 +48,23 @@ const answerCodingQuestionFlow = ai.defineFlow(
     inputSchema: AnswerCodingQuestionInputSchema,
     outputSchema: AnswerCodingQuestionOutputSchema,
   },
-  async input => {
-    const {output} = await answerCodingQuestionPrompt(input);
+  async (input) => {
+    const { apiKey, ...promptData } = input;
+    let model = ai.model('googleai/gemini-2.0-flash');
+
+    if (apiKey) {
+      const customGoogleAI = googleAI({ apiKey });
+      model = customGoogleAI.model('gemini-2.0-flash');
+    }
+    
+    const {output} = await ai.generate({
+      model: model,
+      prompt: answerCodingQuestionPrompt.compile({input: promptData}),
+      output: {
+        schema: AnswerCodingQuestionOutputSchema,
+      },
+    });
+    
     return output!;
   }
 );
