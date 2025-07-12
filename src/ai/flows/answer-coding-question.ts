@@ -52,8 +52,9 @@ const answerCodingQuestionFlow = ai.defineFlow(
     const { apiKey, ...promptData } = input;
     
     const {output} = await ai.generate({
-      model: apiKey ? googleAI({apiKey}).model('gemini-2.0-flash') : 'googleai/gemini-2.0-flash',
-      prompt: await answerCodingQuestionPrompt.render({input: promptData}),
+      model: apiKey ? googleAI({apiKey}).model('gemini-1.5-flash-latest') : 'googleai/gemini-1.5-flash-latest',
+      prompt: answerCodingQuestionPrompt,
+      input: promptData,
       output: {
         schema: AnswerCodingQuestionOutputSchema,
       },
